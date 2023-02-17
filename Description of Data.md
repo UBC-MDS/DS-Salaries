@@ -31,7 +31,7 @@ The dataset is constantly updated with fresh and updated information given by pr
 `remote_ratio` : The overall amount of work done remotely, possible values are as follows: 
 - 0 : No remote work (less than 20%)
 - 50 : Partially remote
-- 100 : ully remote (more than 80%)
+- 100 : Fully remote (more than 80%)
     
     
 `company_location` : The country of the employer's main office or contracting branch as an ISO 3166 country code.
