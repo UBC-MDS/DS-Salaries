@@ -82,6 +82,6 @@ Before you submit a pull request, check that it meets these guidelines:
 
 ## Code of Conduct
 
-Please note that the `prelim_eda_helper` project is released with a
+Please note that the `DS-Salaries` project is released with a
 [Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project you agree to abide by its terms.
 <!-- #endregion -->
