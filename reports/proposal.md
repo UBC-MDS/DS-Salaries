@@ -1,3 +1,59 @@
+## Proposal
+
+## Section 1: Motivation and Purpose
+
+**Our role:** As Data Scientists, our mission is to provide invaluable resources to professionals in the Data Science field
+
+**Target audience:** Our main target audience includes individuals searching for employment in the Data Science space. A secondary audience includes managers, recruiters, and founders looking to build a talented Data Science team.
+
+One of the primary factors in any job search is salary. However, determining the appropriate compensation for a given role can be challenging, especially in the constantly evolving world of Data Science. To address this, we have compiled a comprehensive dataset of user-submitted salary information from over 2600 jobs across 70 countries and 80 job titles.
+
+Our interactive dashboard provides users with high-level salary trends by country and allows for customized visualizations using filters such as experience, job location, and company size. Users can explore the data in various formats including histograms, box plots, and bar charts. Not only will our dashboard help in the salary negotiation process, but it also provides an invaluable tool for guiding users in their job search.
+
+
+## Section 2: Description of Data 
+The dataset provided by [ai-jobs.net](https://ai-jobs.net/) is what we are utilising for this research. The information includes the average salary paid globally for AI and machine learning professionals working in a variety of professions in different nations.
+The dataset is constantly updated with fresh and updated information given by professionals all over the world. This dataset is available in CSV format from [ai jobs](https://ai-jobs.net/salaries/download/). The dataset includes eleven fields for ease of understanding and comparing pay for different jobs and across nations, including work year, experience level, employment type, job title, salary, salary currency, salary in usd, employee residence, remote ratio, company location, and company size. The dataset contains 2650 rows of information reported for the three years 2020-2023. The project's main goal is to provide graduates with an insight into industry trends, across multiple roles and at multiple levels. In this project, we will be using data from the year 2020 to date. The columns in the dataset are as: 
+
+
+`work_year` : The year in which salary was paid. 
+
+`experience_level` : The experience level in the job during the `work_year` with the following possible values :
+- EN :  Entry-level / Junior
+- MI : Mid-level / Intermediate
+- SE : Senior-level / Expert
+- EX : Executive-level / Director
+    
+`employment_type` : The type of employment for the role : 
+- PT : Part Time
+- FT : Full Time 
+- CT : Contract 
+- FL : Freelance
+
+`job_title` : The role of the person during the `work_year`.
+
+`salary` : The total gross salary paid to the employee.
+     
+`salary_currency` : The currency in which salary is paid as an ISO 4217 currency code.
+
+`salary_in_usd`: The salary in USD (FX rate divided by avg. USD rate of respective year via data from [BIS](https://www.bis.org/statistics/about_fx_stats.htm).
+
+`employee_residence` : Employee's primary country of residence in during the work year as an ISO 3166 country code.
+
+`remote_ratio` : The overall amount of work done remotely, possible values are as follows: 
+- 0 : No remote work (less than 20%)
+- 50 : Partially remote
+- 100 : Fully remote (more than 80%)
+    
+    
+`company_location` : The country of the employer's main office or contracting branch as an ISO 3166 country code.
+
+`company_size` : The average number of people that worked for the company during the `work_year`:
+- S : less than 50 employees(small) 
+- M : 50 to 250 employees (medium)
+- L : more than 250 employees (large)
+
+
 ## Section 3: Research questions and usage scenarios
 
 The DS-Salaries App aims to provide answers to current and aspiring Data Science professionals researching salaries in the field as well as professionals looking to build Data Science teams. The main research questions addressed by DS-Salaries are:
@@ -22,6 +78,4 @@ The DS-Salaries app will provide Jane and Michael the information they need.  DS
 
 When users load the app, they will be able to find information about salary trends, experience-dependent salary levels, pay levels depending on job titles and salary levels based on specific geography.  Furthermore the app will provide functionality to evaluate the data for specific year, job location, company size and experience level.
 
-```python
 
-```
