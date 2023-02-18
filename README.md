@@ -2,6 +2,16 @@
 
 - authors: Mehwish Nabi, Yaou Hu, Jonah Hamilton, Ruslan Dimitrov
 
+## Motivation and research questions
+Target audience: Our main target audience includes individuals searching for employment in the Data Science space. A secondary audience includes managers, recruiters, and founders looking to build a talented Data Science team.
+
+The main research questions addressed by DS-Salaries are:
+
+- How have salary levels changed over the past couple of years?
+- What is the association between salary levels and experience?
+- What are the top paying positions in the field of Data Science?
+- How do salary levels for Data Science professionals vary across the world?
+
 ## Description of the app and sample sketch
 Based on the motivation and aim of this app, it has a landing page that shows the distribution of data scientist salaries depending on the candidate’s experience level, the job market’s trend in the past three years, job titles, and company locations. 
 
