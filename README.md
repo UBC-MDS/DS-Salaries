@@ -24,4 +24,4 @@ Collectively, these reactive features provide users with flexibility and a varie
 ![](img/sketch.png)
 
 ## License
-Licensed under the terms of the MIT license.
+Licensed under the terms of the [MIT license](LICENSE).
