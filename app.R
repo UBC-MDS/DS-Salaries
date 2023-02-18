@@ -1,14 +1,12 @@
-#
-# This is a Shiny web application. You can run the application by clicking
-# the 'Run App' button above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
+# DS-Salaries project initial format set up
 #
 
 library(shiny)
+library(tidyverse)
+library(ggplot2)
 
+data <-read.csv("data/salaries.csv")
+  
 # Define UI for application that draws a histogram
 ui <- fluidPage(
 
@@ -37,13 +35,13 @@ server <- function(input, output) {
 
     output$distPlot <- renderPlot({
         # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
+        x    <- data$salary_in_usd
         bins <- seq(min(x), max(x), length.out = input$bins + 1)
 
         # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white',
-             xlab = 'Waiting time to next eruption (in mins)',
-             main = 'Histogram of waiting times')
+        hist(x, breaks = bins, col = 'gold', border = 'white',
+             xlab = 'Salary',
+             main = 'Histogram of salary')
     })
 }
 
