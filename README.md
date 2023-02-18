@@ -1,5 +1,6 @@
 # DS-Salaries
 
+- authors: Mehwish Nabi, Yaou Hu, Jonah Hamilton, Ruslan Dimitrov
 
 ## Description of the app and sample sketch
 Based on the motivation and aim of this app, it has a landing page that shows the distribution of data scientist salaries depending on the candidate’s experience level, the job market’s trend in the past three years, job titles, and company locations. 
@@ -11,3 +12,6 @@ Four dropdown menus (i.e., the year, the job location, the company size, and the
 Collectively, these reactive features provide users with flexibility and a variety of combinations of salary comparisons. Users might select to compare the top earning jobs of any two countries in any year at a specific experience level, see the salary differences across years depending on experience levels and company sizes, and see the map showing salary differences across countries in a certain year for a certain experience level, just to name a few.
 
 ![](img/sketch.png)
+
+## License
+Licensed under the terms of the MIT license.
