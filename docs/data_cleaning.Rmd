@@ -1,0 +1,41 @@
+---
+title: "Dataset Wrangling"
+author: "Jonah Hamilton"
+date: "2023-02-27"
+output: html_document
+---
+
+## Data
+
+The salary information dataset was extracted from [ai-jobs.net](https://ai-jobs.net/salaries/download/)
+
+The geo-location dataset was extracted from the following [GitHub repo](https://gist.github.com/tadast/8827699)
+
+```{r download-data, include=FALSE }
+library(tidyverse)
+
+salary_data <- read_csv('data/salaries.csv')
+
+map_data <- read_csv('data/countries_codes_and_coordinates.csv')
+
+```
+
+## Data Wrangling
+
+```{r}
+
+merged_df <- merge(salary_data, map_data, 
+                   by.x = "company_location",
+                   by.y = "Alpha-2 code",
+                   all.x = TRUE)
+
+
+# save merged file in data directory
+write.csv(merged_df, 'data/merged_salaries.csv')
+
+# check we still have 70 unique countries
+length(unique(merged_df$company_location))
+
+# summarize the dataset
+summary(merged_df)
+```
