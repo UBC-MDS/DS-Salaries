@@ -5,15 +5,15 @@ library(shiny)
 library(tidyverse)
 library(ggplot2)
 
-data <-read.csv("data/salaries.csv")
-  
+data <-read.csv("data/merged_salaries.csv")
+
 # Define UI for application that draws a histogram
 ui <- fluidPage(
 
     # Application title
     titlePanel("Data Science Salaries"),
 
-    # Sidebar with a slider input for number of bins 
+    # Sidebar with a slider input for number of bins
     sidebarLayout(
         sidebarPanel(
             sliderInput("bins",
@@ -45,5 +45,5 @@ server <- function(input, output) {
     })
 }
 
-# Run the application 
+# Run the application
 shinyApp(ui = ui, server = server)
