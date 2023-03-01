@@ -1,4 +1,4 @@
-"","company_location","work_year","experience_level","employment_type","job_title","salary","salary_currency","salary_in_usd","employee_residence","remote_ratio","company_size","Country","Alpha-3 code","Numeric code","Latitude (average)","Longitude (average)"
+"","company_location","work_year","experience_level","employment_type","job_title","salary","salary_currency","salary_in_usd","employee_residence","remote_ratio","company_size","country","alpha-3-code","numeric_code","latitude","longitude"
 "1","AE",2022,"SE","FT","Machine Learning Engineer",120000,"USD",120000,"AE",100,"S","United Arab Emirates","ARE",784,24,54
 "2","AE",2020,"MI","FT","Lead Data Scientist",115000,"USD",115000,"AE",0,"L","United Arab Emirates","ARE",784,24,54
 "3","AE",2022,"SE","FT","Machine Learning Engineer",65000,"USD",65000,"AE",100,"S","United Arab Emirates","ARE",784,24,54
