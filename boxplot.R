@@ -10,15 +10,11 @@ library(thematic)
 data <-read.csv("data/merged_salaries.csv")
 
 # preliminary data cleaning and wrangling
-# change employment type to the full name
-boxplot_data <- data |> dplyr::mutate(
-  employment_type = case_when(
-  employment_type == "FT" ~ "Full-time",
-  employment_type == "PT"  ~ "Part-time",
-  employment_type == "FL"  ~ "Freelance",
-  employment_type == "CT"  ~ "Contract"))
-# change year into categorical variable
-boxplot_data$work_year <- factor(boxplot_data$work_year)
+
+# change remote_ratio and year into categorical variables
+data$remote_ratio <- factor(data$remote_ratio)
+data$work_year <- factor(data$work_year)
+
 
 # Define UI for application that draws a reactive boxplot
 ui <- fluidPage(
@@ -28,10 +24,10 @@ ui <- fluidPage(
 
     # dropdown menu with a single selection
     # default employment type is 'full-time'
-    selectInput(inputId = 'employment_type',
-                label = "employment type:", 
-                choices = unique(boxplot_data$employment_type), 
-                selected = 'Full-time'),
+    selectInput(inputId = 'remote_ratio',
+                label = "remote ratio:", 
+                choices = unique(data$remote_ratio), 
+                selected = '0'),
 
     # show the boxplot
     mainPanel(
@@ -44,8 +40,8 @@ server <- function(input, output, session) {
   
   # filter data frame for employment type based on selection
   boxplot_react_data <- reactive({
-    boxplot_data |>
-      dplyr::filter(employment_type == input$employment_type)
+    data |>
+      dplyr::filter(remote_ratio == input$remote_ratio)
   })
 
   output$boxplot <- renderPlot({
@@ -59,7 +55,7 @@ server <- function(input, output, session) {
                                     suffix = "K")) + 
     ggplot2::labs(
           title = paste('Salary by year for',
-                        input$employment_type, 'employment'),
+                        input$remote_ratio, 'remote ratio'),
                         x = 'Year',
                         y = 'Salary In USD') +
     ggplot2::theme_bw() +
