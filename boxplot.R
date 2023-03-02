@@ -54,7 +54,8 @@ server <- function(input, output, session) {
                           input$employment_type, 'employment'),
                           x = 'Year',
                           y = 'Salary In USD') +
-      ggplot2::theme_bw()
+      ggplot2::theme_bw() +
+      ggplot2::theme(legend.position = "none")  
         
     })
 
