@@ -29,6 +29,7 @@ merged_df <- merge(salary_data, map_data,
                    by.y = "Alpha-2 code",
                    all.x = TRUE)
 
+# fix column labels
 merged_df <- merged_df |>
   rename(
     "latitude" = "Latitude (average)",
@@ -37,6 +38,25 @@ merged_df <- merged_df |>
     "numeric_code" = "Numeric code",
     "country" = "Country"
   )
+
+# fix country names so polygons will display properly
+merged_df <- merged_df |>
+    mutate(country = str_replace(country, "Bolivia, Plurinational State of",
+                                 "Bolivia")) |>
+    mutate(country = str_replace(country, "Bahamas",
+                                 "The Bahamas")) |>
+    mutate(country = str_replace(country, "Iran, Islamic Republic of",
+                                 "Iran")) |>
+    mutate(country = str_replace(country, "Moldova, Republic of",
+                                 "Moldova")) |>
+    mutate(country = str_replace(country,"Macedonia, the former Yugoslav Republic of",
+                                 "Macedonia")) |>
+    mutate(country = str_replace(country, "Russian Federation",
+                                 "Russia")) |>
+    mutate(country = str_replace(country, "United States",
+                                 "United States of America")) |>
+    mutate(country = str_replace(country, "Viet Nam",
+                                 "Vietnam"))
 
 # save merged file in data directory
 write.csv(merged_df, '../data/merged_salaries.csv')
