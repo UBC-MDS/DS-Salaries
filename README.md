@@ -43,6 +43,6 @@ If you are interested in contributing to the app we welcome to share your thougt
 
 If you would like to help with the development of this Dashboard feel free to contact us after referring to our [contributor's guidelines](CONTRIBUTING.md)
 
-## License {#license}
+## License 
 
 Licensed under the terms of the [MIT license](LICENSE).
