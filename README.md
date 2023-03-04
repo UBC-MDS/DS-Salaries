@@ -4,10 +4,10 @@
 
 # Table of Contents
 
--   [Motivation and research questions]
--   [Description of the app and sample sketch]
--   [Get Involved]
--   [Contact us]
+-   [Motivation and research questions](#Motivation-and-research-questions)
+-   [Description of the app and sample sketch](#Description-of-the-app-and-sample-sketch)
+-   [Get Involved](#Get-Involved)
+-   [Contact us](#Contact-us)
 -   [License](#license)
 
 ## Motivation and research questions
