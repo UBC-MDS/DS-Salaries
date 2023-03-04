@@ -1,4 +1,4 @@
-# DS-Salaries boxplot
+# DS-Salaries 
 #
 
 library(shiny)
@@ -6,6 +6,7 @@ library(tidyverse)
 library(ggplot2)
 library(thematic)
 library(plotly)
+library(dplyr)
 
 options(shiny.autoreload = TRUE)
 
@@ -38,15 +39,22 @@ ui <- fluidPage(
               label = "remote ratio:", 
               choices = unique(data$remote_ratio), 
               selected = '0'),
+  titlePanel("Average Salary by Year, USD"),
+  sidebarPanel(
+    checkboxGroupInput("experience", label = "Select experience level(s)",
+                       choices = c("Junior", "Intermediate", "Expert", "Director"),
+                       selected = c("Junior", "Intermediate", "Expert", "Director"))
+  ),
   
   # show the boxplot
   mainPanel(
     column(width = 12, 
-           column(width=10, align="center",
+           column(width=10, 
+                  align="center",
                   plotlyOutput(
                     outputId = "TopTenPlot",
                     width = "100%",
-                    height = "220px",
+                    height = "330px",
                     inline = FALSE,
                     reportTheme = TRUE
                   ),
@@ -55,7 +63,9 @@ ui <- fluidPage(
                     width = "100%",
                     height = "220px"
                   ))
-  )
+  ),
+  plotOutput("plot")
+  
 ))
 
 # Define server logic required to draw a reactive boxplot
@@ -63,10 +73,11 @@ server <- function(input, output, session) {
 
   TopJobs <- reactive({
     data |> dplyr::filter (
-      country == input$country, job_title %in% (data |>  
-                                                                       dplyr::filter( country == input$country)  |>
-                                                                       dplyr::group_by(job_title) |> dplyr::summarise(med = median(salary_in_usd)) |>
-                                                                       dplyr:: top_n(10,med) |> dplyr::pull(job_title)) )
+      country == input$country, job_title %in% (data |>
+                                                  dplyr::filter( country == input$country)  |>
+                                                  dplyr::group_by(job_title) |> 
+                                                  dplyr::summarise(med = median(salary_in_usd)) |>
+                                                  dplyr:: top_n(10,med) |> dplyr::pull(job_title)) )
   }) 
   
   output$TopTenPlot <- plotly::renderPlotly({ 
@@ -110,6 +121,34 @@ server <- function(input, output, session) {
       ggplot2::theme_bw() +
       ggplot2::theme(legend.position = "none")  
     
+  })
+  
+  data_hist <- reactive({
+    data_hist <- read.csv("data/merged_salaries.csv")  |> 
+      dplyr::mutate(experience_level = case_when(
+        experience_level == "EN" ~ "Junior",
+        experience_level == "EX"  ~ "Expert",
+        experience_level == "MI"  ~ "Intermediate",
+        experience_level == "SE"  ~ "Director"
+      ))
+    
+    data_hist |>
+      dplyr::group_by(work_year, experience_level) |>
+      dplyr::summarize(avg_salary_usd = mean(salary_in_usd), .groups = 'drop')
+  })
+  
+  output$plot <- renderPlot({
+    filtered_data <- data_hist() |>
+      dplyr::filter(experience_level %in% input$experience)
+    
+    ggplot2::ggplot(filtered_data, aes(x = work_year, 
+                                       y = avg_salary_usd, 
+                                       color = experience_level, 
+                                       group = experience_level)) +
+      ggplot2::geom_line(size = 1) +
+      ggplot2::geom_point() +
+      ggplot2::labs(x = "Work Year", y = "Salary USD", color = "Experience level") +
+      ggplot2::scale_color_hue(labels = c("Junior", "Intermediate", "Expert", "Director"))
   })
   
 }
