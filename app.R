@@ -254,7 +254,11 @@ server <- function(input, output, session) {
         x = 'Employment type',
         y = 'Salary In USD') +
       ggplot2::theme_bw() +
-      ggplot2::theme(legend.position = "none")  
+      ggplot2::theme(legend.position = "none",
+                     plot.title = element_text(size = 15, face = "bold"),
+                     axis.text.x = element_text(size = 12, angle = 0),
+                     axis.text.y = element_text(size = 12, angle = 0),
+                     axis.title = element_text(size = 15))  
     
   })
   
