@@ -4,7 +4,7 @@
 
 # Table of Contents
 
--   [DS-Salaries on shinyapps.io](#ds-salaries-on-shinyapps.io)
+-   [DS-Salaries on shinyapps.io](#DS-Salaries-on-shinyapps.io)
 -   [Motivation and research questions](#Motivation-and-research-questions)
 -   [Description of the app and sample sketch](#Description-of-the-app-and-sample-sketch)
 -   [Get Involved](#Get-Involved)
