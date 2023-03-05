@@ -7,7 +7,8 @@
 
 -   [DS-Salaries on shinyapps.io](#DS-Salaries-on-shinyapps)
 -   [Motivation and research questions](#Motivation-and-research-questions)
--   [Description of the app and sample sketch](#Description-of-the-app-and-sample-sketch)
+-   [Description of the app](#Description-of-the-app)
+-   [Installation](#Installation)
 -   [Get Involved](#Get-Involved)
 -   [Contact us](#Contact-us)
 -   [License](#license)
@@ -44,6 +45,28 @@ The ranking chart of the top ten job titles with the highest salaries varies acr
 The box plot comparing salaries based on the candidate’s experience level varies by the remote ratio (the overall amount of work done remotely), which users can choose with a drop-down menu.
 
 The line plot shows the salary levels over the past years, varying by candidates’ experience level(s) that users can choose with a checkbox. 
+
+## Installation
+
+To install `DS-Salaries` locally, you can:
+
+1. Clone this repository with:
+
+```
+git clone https://github.com/UBC-MDS/DS-Salaries.git
+```
+
+2. Run the following command in your R console to install the required libraries locally:
+
+```{r}
+install.packages(c('shiny', 'tidyverse', 'ggplot2', 'thematic', 'plotly', 'dplyr', 'leaflet', 'bslib', 'rnaturalearthdata', 'rnaturalearth', 'sf', 'htmltools'))
+```
+
+3. Finally, move to the directory and run the following command to run the app locally:
+
+```{r}
+RScript App.R
+```
 
 ## Get Involved
 
