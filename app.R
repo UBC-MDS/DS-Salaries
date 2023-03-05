@@ -1,5 +1,8 @@
 # DS-Salaries Shiny Dashboard
 
+devtools::install_github("ropensci/rnaturalearthdata")
+devtools::install_github("ropensci/rnaturalearthhires")
+
 # load library
 
 library(shiny)
@@ -12,6 +15,7 @@ library(leaflet)
 library(thematic)
 library(bslib)
 library(tidyverse)
+library(rnaturalearthdata) 
 library(rnaturalearth)
 library(sf)
 
