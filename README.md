@@ -4,13 +4,18 @@
 
 # Table of Contents
 
+-   [DS-Salaries on shinyapps.io](#DS-Salaries-on-shinyapps.io)
 -   [Motivation and research questions](#Motivation-and-research-questions)
 -   [Description of the app and sample sketch](#Description-of-the-app-and-sample-sketch)
 -   [Get Involved](#Get-Involved)
 -   [Contact us](#Contact-us)
 -   [License](#license)
 
-## Motivation and research questions
+## DS-Salaries on shinyapps.io
+
+The Shiny app has been deployed on shinyapps.io. It can be accessed [here](https://yhuuu.shinyapps.io/DS-Salaries/)
+
+## Motivation and research questions {#motivation-and-research-questions}
 
 Target audience: Our main target audience includes individuals searching for employment in the Data Science space. A secondary audience includes managers, recruiters, and founders looking to build a talented Data Science team.
 
@@ -21,7 +26,7 @@ The main research questions addressed by DS-Salaries are:
 -   What are the top paying positions in the field of Data Science?
 -   How do salary levels for Data Science professionals vary across the world?
 
-## Description of the app and sample sketch
+## Description of the app and sample sketch {#description-of-the-app-and-sample-sketch}
 
 Based on the motivation and aim of this app, it has a landing page that shows the distribution of data scientist salaries depending on the candidate's experience level, the job market's trend in the past three years, job titles, and company locations.
 
@@ -33,16 +38,16 @@ Collectively, these reactive features provide users with flexibility and a varie
 
 ![](img/sketch.png)
 
-## Get Involved
+## Get Involved {#get-involved}
 
 If you are interested in contributing to the app we welcome to share your thougts. Particularly we would appreciate:
 
 -   Additional data. This app is constanly evolving and being updated with new data. If you posses data related to Data Science salaries that can be applied to this Dashboard we would highly appreciate your contribution.
 
-## Contact us
+## Contact us {#contact-us}
 
 If you would like to help with the development of this Dashboard feel free to contact us after referring to our [contributor's guidelines](CONTRIBUTING.md)
 
-## License 
+## License {#license}
 
 Licensed under the terms of the [MIT license](LICENSE).
