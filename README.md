@@ -16,6 +16,8 @@
 
 The Shiny app has been deployed on shinyapps.io. It can be accessed [here](https://yhuuu.shinyapps.io/DS-Salaries/).
 
+![](img/demo.gif)
+
 ## Motivation and research questions
 
 Target audience: Our main target audience includes individuals searching for employment in the Data Science space. A secondary audience includes managers, recruiters, and founders looking to build a talented Data Science team.
@@ -27,23 +29,27 @@ The main research questions addressed by DS-Salaries are:
 -   What are the top paying positions in the field of Data Science?
 -   How do salary levels for Data Science professionals vary across the world?
 
-## Description of the app and sample sketch
+## Description of the app
 
-Based on the motivation and aim of this app, it has a landing page that shows the distribution of data scientist salaries depending on the candidate's experience level, the job market's trend in the past three years, job titles, and company locations.
+Based on the motivation and aim of this app, it has a landing page that shows the distribution of data scientist salaries depending on the candidate’s experience level, the job market’s trend in the past three years, job titles, and company locations.
 
-Specifically, this app contains four plots that correspond to our four research questions: A histogram shows the salary levels over the past years, a box plot comparing salaries based on the candidate's experience level, a set of two bar charts of the top ten job titles with the highest salaries compared by countries, and a map showing how salary levels vary across the world.
+Specifically, this app contains four plots that correspond to our four research questions: A line plot shows the salary levels over the past years, a box plot comparing salaries based on the candidate’s experience level, a ranking chart of the top ten job titles with the highest salaries at different countries, and a map showing how salary levels vary across the world.
 
-Four dropdown menus (i.e., the year, the job location, the company size, and the candidate's experience level) enable this app with reactive features. Each of these dropdown menus provides detailed insights based on the filtering variable. For instance, with the year dropdown menu, users can see the salaries depending on the candidate's experience levels, the highest-paying job titles, and the salary comparison across the globe at different times (2020 vs. 2021 vs. 2022). Another example is that, with the company size dropdown list, users can see the salary trend across years, salaries depending on the candidate's experience levels, the highest-paying job titles, and the global salary comparison across company size (small vs. medium vs. large).
+The app has four tab panels. Each panel has one interactive plot:
 
-Collectively, these reactive features provide users with flexibility and a variety of combinations of salary comparisons. Users might select to compare the top earning jobs of any two countries in any year at a specific experience level, see the salary differences across years depending on experience levels and company sizes, and see the map showing salary differences across countries in a certain year for a certain experience level, just to name a few.
+The map shows the global salary comparison across company sizes (small vs. medium vs. large). Users can select the company size using a radio button.
 
-![](img/sketch.png)
+The ranking chart of the top ten job titles with the highest salaries varies across user-selected countries.
+
+The box plot comparing salaries based on the candidate’s experience level varies by the remote ratio (the overall amount of work done remotely), which users can choose with a drop-down menu.
+
+The line plot shows the salary levels over the past years, varying by candidates’ experience level(s) that users can choose with a checkbox. 
 
 ## Get Involved
 
-If you are interested in contributing to the app we welcome to share your thougts. Particularly we would appreciate:
+If you are interested in contributing to the app we welcome to share your thoughts. Particularly we would appreciate:
 
--   Additional data. This app is constanly evolving and being updated with new data. If you posses data related to Data Science salaries that can be applied to this Dashboard we would highly appreciate your contribution.
+-   Additional data. This app is constantly evolving and being updated with new data. If you posses data related to Data Science salaries that can be applied to this Dashboard we would highly appreciate your contribution.
 
 ## Contact us
 
