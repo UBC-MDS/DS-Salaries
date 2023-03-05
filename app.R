@@ -1,8 +1,5 @@
 # DS-Salaries Shiny Dashboard
 
-devtools::install_github("ropensci/rnaturalearthdata")
-devtools::install_github("ropensci/rnaturalearthhires")
-
 # load library
 
 library(shiny)
