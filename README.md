@@ -11,7 +11,7 @@
 -   [Contact us](#Contact-us)
 -   [License](#license)
 
-## DS-Salaries on shinyapps.io
+## DS Salaries on shinyapps.io
 
 The Shiny app has been deployed on shinyapps.io. It can be accessed [here](https://yhuuu.shinyapps.io/DS-Salaries/).
 
