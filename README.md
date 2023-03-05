@@ -7,7 +7,7 @@
 
 -   [DS-Salaries on shinyapps.io](#DS-Salaries-on-shinyapps)
 -   [Motivation and research questions](#Motivation-and-research-questions)
--   [Description of the app and sample sketch](#Description-of-the-app-and-sample-sketch)
+-   [Description of the app]Description-of-the-app)
 -   [Get Involved](#Get-Involved)
 -   [Contact us](#Contact-us)
 -   [License](#license)
