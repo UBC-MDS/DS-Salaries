@@ -12,6 +12,7 @@ library(leaflet)
 library(thematic)
 library(bslib)
 library(tidyverse)
+library(rnaturalearthdata) 
 library(rnaturalearth)
 library(sf)
 
