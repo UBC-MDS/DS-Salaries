@@ -93,25 +93,22 @@ ui <- navbarPage(
                     
              )),
   
-  tabPanel('Salary by year',
+  # Add a tab panel with selection options
+  tabPanel('Average Salary per Year by Experience Level',
     sidebarPanel(
       column(width = 10,
-      checkboxGroupInput("experience", 
-                         label = "Select experience level(s)",
-                       choices = c("Junior", 
-                                   "Intermediate", 
-                                   "Expert", 
-                                   "Director"),
-                       selected = c("Junior", 
-                                    "Intermediate", 
-                                    "Expert", 
-                                    "Director"))
+      checkboxGroupInput("exp_levels", "Select experience levels:", 
+                         choices = c("Entry-level / Junior" = "EN", 
+                                     "Mid-level / Intermediate" = "MI", 
+                                     "Senior-level / Expert" = "SE", 
+                                     "Executive-level / Director" = "EX"),
+                         selected = c("EN", "MI", "SE", "EX"))
    )
    ),
   
   # show the plots
   mainPanel(
-            fluidRow(plotOutput(outputId = "plot",
+            fluidRow(plotOutput(outputId = "salary_plot",
                                 width = "600px"))
     
   ))
@@ -263,38 +260,36 @@ server <- function(input, output, session) {
     
   })
   
-  # ----------hist line plot------------
-  # data_hist
-  data_hist <- reactive({
-    data_hist <- read.csv("data/merged_salaries.csv")  |> 
-      dplyr::mutate(experience_level = case_when(
-        experience_level == "EN" ~ "Junior",
-        experience_level == "EX"  ~ "Expert",
-        experience_level == "MI"  ~ "Intermediate",
-        experience_level == "SE"  ~ "Director"
-      ))
-    
-    data_hist |>
-      dplyr::group_by(work_year, experience_level) |>
-      dplyr::summarize(avg_salary_usd = mean(salary_in_usd), .groups = 'drop')
+  # ----------Create a plot of average salary per year by experience level------------
+  # Filter the data based on the user's selection
+  data_salaries <- read.csv("data/merged_salaries.csv")
+  filtered_data_salaries <- reactive({
+    data_salaries  |> 
+      dplyr::filter(experience_level %in% input$exp_levels)
   })
   
-  # plot hist
-  output$plot <- renderPlot({
-    filtered_data <- data_hist() |>
-      dplyr::filter(experience_level %in% input$experience)
-    
-    ggplot2::ggplot(filtered_data, aes(x = work_year, 
-                                       y = avg_salary_usd, 
-                                       color = experience_level, 
-                                       group = experience_level)) +
-      ggplot2::geom_line(size = 1) +
-      ggplot2::geom_point() +
-      ggplot2::labs(x = "Work Year", 
-                    y = "Salary USD", 
-                    color = "Experience level") +
-      ggplot2::scale_color_hue(
-        labels = c("Junior", "Intermediate", "Expert", "Director"))
+  # Create a plot of average salary per year by experience level
+  
+  output$salary_plot <- renderPlot({
+    data_salaries_filtered <- filtered_data_salaries() |> 
+      dplyr::mutate(experience_level = case_when(
+        experience_level == "EN" ~ "Entry-level / Junior",
+        experience_level == "MI" ~ "Mid-level / Intermediate",
+        experience_level == "SE" ~ "Senior-level / Expert",
+        experience_level == "EX" ~ "Executive-level / Director",
+        TRUE ~ experience_level
+      ))
+    ggplot2::ggplot(data_salaries_filtered, aes(x = work_year, y = salary_in_usd/1000, color = experience_level)) +
+      ggplot2::geom_line(stat = "summary", fun = "mean") +
+      ggplot2::xlab("Work Year") +
+      ggplot2::ylab("Average Salary in '000 USD") +
+      ggplot2::ggtitle("Average Salary per Year by Experience Level") +
+      ggplot2::scale_color_manual(values = c("Entry-level / Junior" = "blue",
+                                    "Mid-level / Intermediate" = "green",
+                                    "Senior-level / Expert" = "orange", 
+                                    "Executive-level / Director" = "red"),
+                         name = "Experience Level"
+      )
   })
   
   
