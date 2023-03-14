@@ -41,7 +41,7 @@ data <- data |>
 # Define UI for applications
 
 ui <- navbarPage(
-  id = "navbar"
+  id = "navbar",
   # use the theme from the map
   theme = bslib::bs_theme(bootswatch = "flatly"),
   
