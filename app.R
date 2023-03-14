@@ -213,7 +213,7 @@ server <- function(input, output, session) {
   
   # ----------------Top Jobs------------------------------
   # top jobs data
-  opJobs <- reactive({
+  TopJobs <- reactive({
     data |> dplyr::filter (
       country == input$country,
       job_title %in% (data |>
