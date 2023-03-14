@@ -81,32 +81,37 @@ ui <- navbarPage(
       ))),
   
   tabPanel('Average salary by employment type and by year',
-           selectInput(inputId = 'remote_ratio',
-              label="The overall amount of work done remotely:", 
-              choices = unique(data$remote_ratio), 
-              selected = '100'),
-           
+           fluidRow(
+    splitLayout(
+      cellWidths = 800,
+        #c("40%", "20%"),
            sidebarPanel(
              column(
-               width = 10,
+               width = 12,
               checkboxGroupInput("exp_levels", "Select experience levels:", 
                                   choices = c("Entry-level / Junior" = "EN", 
                                               "Mid-level / Intermediate" = "MI", 
                                               "Senior-level / Expert" = "SE", 
                                           "Executive-level / Director" = "EX"),
-                                       selected = c("EN", "MI", "SE", "EX"))
-             )
-           ),
+                                       selected = c("EN", "MI", "SE", "EX")))),
+              
+              selectInput(inputId = 'remote_ratio',
+                          label="The overall amount of work done remotely:", 
+                          choices = unique(data$remote_ratio), 
+                          selected = '100'),
+      h6(" ")
+             ),
            
     # show the plots
     mainPanel(
       fluidRow(
         splitLayout(cellWidths = c("50%", "50%"),
+                    plotOutput(outputId = "salary_plot",
+                               width = "600px"),
                       plotOutput(outputId = "boxplot",
                                       width = "500px"),
-                             plotOutput(outputId = "salary_plot",
-                                      width = "600px"))
-             )))
+                    )
+             ))))
   
 )
 # Define server logic required to draw a reactive boxplot
@@ -246,7 +251,7 @@ server <- function(input, output, session) {
                       input$remote_ratio),
         x = 'Employment type',
         y = 'Salary In USD') +
-      ggplot2::theme_bw() +
+      #ggplot2::theme_bw() +
       ggplot2::theme(legend.position = "none",
                      plot.title = element_text(size = 15, face = "bold"),
                      axis.text.x = element_text(size = 12, angle = 0),
