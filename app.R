@@ -41,6 +41,7 @@ data <- data |>
 # Define UI for applications
 
 ui <- navbarPage(
+  id = "navbar",
   # use the theme from the map
   theme = bslib::bs_theme(bootswatch = "flatly"),
 
@@ -280,7 +281,12 @@ server <- function(input, output, session) {
   data_salaries <- read.csv("data/merged_salaries.csv")
   filtered_data_salaries <- reactive({
     data_salaries  |>
+    if (length(input$exp_levels) == 0){
+      data_salaries
+    } else{
+    data_salaries  |>
       dplyr::filter(experience_level %in% input$exp_levels)
+    }
   })
 
   # Create a plot of average salary per year by experience level
@@ -294,6 +300,14 @@ server <- function(input, output, session) {
         experience_level == "EX" ~ "Executive-level / Director",
         TRUE ~ experience_level
       ))
+    if (length(input$exp_levels) == 0){
+      ggplot2::ggplot(data_salaries_filtered, aes(x = work_year, y = salary_in_usd/1000)) +
+        ggplot2::geom_line(stat = "summary", fun = "mean", color = 'green') +
+        ggplot2::xlab("Work Year") +
+        ggplot2::ylab("Average Salary in '000 USD") +
+        ggplot2::ggtitle("Average Salary per Year by All Experience Levels")
+
+    } else {
     ggplot2::ggplot(data_salaries_filtered, aes(x = work_year, y = salary_in_usd/1000, color = experience_level)) +
       ggplot2::geom_line(stat = "summary", fun = "mean") +
       ggplot2::xlab("Work Year") +
@@ -305,6 +319,7 @@ server <- function(input, output, session) {
                                     "Executive-level / Director" = "red"),
                          name = "Experience Level"
       )
+    }
   })
 
 
