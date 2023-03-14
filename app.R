@@ -65,19 +65,20 @@ ui <- navbarPage(
            )),
   
   tabPanel('Top 10 highest paid jobs',
-           
-           selectInput(inputId = 'country',
-                       label = 'Select the country',
-                       choices = unique(data$country),
-                       selected = 'Canada'),
-           
+           fluidRow(column ( 4, 
+                             selectInput(inputId = 'country',
+                                         label = 'Select the country',
+                                         choices = unique(data$country),
+                                         selected = 'Canada')) ,
+                    column(6,selectInput(inputId = 'country2',
+                                         label = 'Select the country to compare with :',
+                                         choices = unique(data$country), selected = ''))),
            # show the plots
            mainPanel(
-             fluidRow(plotlyOutput(outputId = "TopTenPlot",
-                                   height = "600px",
-                                   width = "600px",
-                                   inline = FALSE,
-                                   reportTheme = TRUE)
+             fluidRow(plotOutput(outputId = "TopTenPlot",
+                                 height = "600px",
+                                 width = "800px"
+             )
              ))),
   
   tabPanel('Average salary by employment type and by year',
@@ -212,36 +213,42 @@ server <- function(input, output, session) {
   
   # ----------------Top Jobs------------------------------
   # top jobs data
-  TopJobs <- reactive({
+  opJobs <- reactive({
     data |> dplyr::filter (
-      country == input$country, 
+      country == input$country,
       job_title %in% (data |>
                         dplyr::filter( country == input$country)  |>
-                        dplyr::group_by(job_title) |> 
+                        dplyr::group_by(job_title) |>
                         dplyr::summarise(med = median(salary_in_usd)) |>
-                        dplyr:: top_n(10,med) |> dplyr::pull(job_title)) )
-  }) 
+                        dplyr:: top_n(10,med) |> dplyr::pull(job_title))  ) |> dplyr::select(job_title)
+  })
+  
+  
+  
+  observeEvent(TopJobs(), {
+    choices <- unique(data |> dplyr::filter (
+      job_title %in% (TopJobs()$job_title ) )|> dplyr::pull(country))
+    updateSelectInput(inputId = "country2", choices = choices, selected = input$country )
+  })
   # top jobs plot
-  output$TopTenPlot <- plotly::renderPlotly({ 
-    
-    thematic::thematic_shiny()
-    
-    plotly::ggplotly(
-      TopJobs() |> 
-        ggplot2::ggplot(ggplot2::aes(y= job_title, 
-                                     x = salary_in_usd, 
-                                     color = job_title)) +
-        ggplot2 ::geom_pointrange(stat = 'summary', fun.min = min,
-                                  fun.max = max,
-                                  fun = median) + 
-        ggplot2 :: theme(legend.position = "none") +
-        ggplot2::labs(title = paste('Top 10 highest Paid jobs in ',
-                                    input$country),
-                      x = 'Salary In USD',
-                      y = '') , tooltip = "text" 
-    )  
-    
-    
+  output$TopTenPlot <- renderPlot({
+    data |> dplyr::filter(country %in% c(input$country,input$country2), job_title %in%  (TopJobs()$job_title ) ) |> 
+      ggplot2::ggplot(ggplot2::aes(y= job_title,
+                                   x = salary_in_usd,
+                                   color = country )) +
+      ggplot2::geom_pointrange(stat = 'summary', fun.min = min,
+                               fun.max = max,
+                               fun = median) +
+      
+      ggplot2::labs(title = paste('Top 10 highest Paid jobs in',
+                                  input$country),
+                    x = 'Salary In USD',
+                    y = '') + 
+      ggplot2::theme(legend.position = "none",
+                     plot.title = element_text(size = 15, face = "bold"),
+                     axis.text.x = element_text(size = 12, angle = 0),
+                     axis.text.y = element_text(size = 12, angle = 0),
+                     axis.title = element_text(size = 15)) 
   })
   
   # -------------boxplot-------------------
