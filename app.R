@@ -9,10 +9,13 @@ library(thematic)
 library(plotly)
 library(dplyr)
 library(leaflet)
-library(thematic)
 library(bslib)
+<<<<<<< HEAD
 library(tidyverse)
 library(rnaturalearthdata)
+=======
+library(rnaturalearthdata) 
+>>>>>>> origin/main
 library(rnaturalearth)
 library(sf)
 
@@ -65,6 +68,7 @@ ui <- navbarPage(
     )
 
   )),
+  
   tabPanel('Top 10 highest paid jobs',
 
     selectInput(inputId = 'country',
@@ -80,6 +84,7 @@ ui <- navbarPage(
                                    inline = FALSE,
                                    reportTheme = TRUE)
       ))),
+<<<<<<< HEAD
 
   tabPanel('Salary by employment type',
            selectInput(inputId = 'remote_ratio',
@@ -87,10 +92,36 @@ ui <- navbarPage(
               choices = unique(data$remote_ratio),
               selected = '50'),
 
+=======
+  
+  tabPanel('Average salary by employment type and by year',
+           selectInput(inputId = 'remote_ratio',
+              label="The overall amount of work done remotely:", 
+              choices = unique(data$remote_ratio), 
+              selected = '100'),
+           
+           sidebarPanel(
+             column(
+               width = 10,
+              checkboxGroupInput("exp_levels", "Select experience levels:", 
+                                  choices = c("Entry-level / Junior" = "EN", 
+                                              "Mid-level / Intermediate" = "MI", 
+                                              "Senior-level / Expert" = "SE", 
+                                          "Executive-level / Director" = "EX"),
+                                       selected = c("EN", "MI", "SE", "EX"))
+             )
+           ),
+           
+>>>>>>> origin/main
     # show the plots
     mainPanel(
-                  fluidRow(plotOutput(outputId = "boxplot",
+      fluidRow(
+        splitLayout(cellWidths = c("50%", "50%"),
+                      plotOutput(outputId = "boxplot",
+                                      width = "500px"),
+                             plotOutput(outputId = "salary_plot",
                                       width = "600px"))
+<<<<<<< HEAD
 
              )),
 
@@ -115,6 +146,11 @@ ui <- navbarPage(
   ))
 )
 
+=======
+             )))
+  
+)
+>>>>>>> origin/main
 # Define server logic required to draw a reactive boxplot
 server <- function(input, output, session) {
 
@@ -301,14 +337,17 @@ server <- function(input, output, session) {
         TRUE ~ experience_level
       ))
     if (length(input$exp_levels) == 0){
-      ggplot2::ggplot(data_salaries_filtered, aes(x = work_year, y = salary_in_usd/1000)) +
+      ggplot2::ggplot(data_salaries_filtered, aes(x = work_year, 
+                                                  y = salary_in_usd/1000)) +
         ggplot2::geom_line(stat = "summary", fun = "mean", color = 'green') +
         ggplot2::xlab("Work Year") +
         ggplot2::ylab("Average Salary in '000 USD") +
         ggplot2::ggtitle("Average Salary per Year by All Experience Levels")
 
     } else {
-    ggplot2::ggplot(data_salaries_filtered, aes(x = work_year, y = salary_in_usd/1000, color = experience_level)) +
+    ggplot2::ggplot(data_salaries_filtered, aes(x = work_year, 
+                                                y = salary_in_usd/1000, 
+                                                color = experience_level)) +
       ggplot2::geom_line(stat = "summary", fun = "mean") +
       ggplot2::xlab("Work Year") +
       ggplot2::ylab("Average Salary in '000 USD") +
