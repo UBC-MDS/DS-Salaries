@@ -43,75 +43,75 @@ ui <- navbarPage(
   # use the theme from the map
   theme = bslib::bs_theme(bootswatch = "flatly"),
   
+  
   titlePanel(title="Data Science Salaries Dashboard"),
   tabPanel('Salary map',
-    fluidRow(
-      radioButtons(
-        inputId = "comp_size",
-        label = "Select the Company Size",
-        # choices = unique(data$company_size),
-        selected = "L",
-        choiceNames = c("Small < 50 Employees", "Large > 250 Employees", 
-                      "Medium 50-250 Employees"),
-        choiceValues = unique(data$company_size),
-        inline = TRUE
-      ),
-      fluidRow(column(
-      12,
-      leaflet::leafletOutput(outputId = 'map'))
-      
-    )
-    
-  )),
+           fluidRow(
+             tags$style(HTML(".radio-inline {margin-right: 50px;}")),
+             radioButtons(
+               inputId = "comp_size",
+               label = "Select the Company Size",
+               selected = "L",
+               choiceNames = c("Small < 50 Employees", "Large > 250 Employees",
+                               "Medium 50-250 Employees"),
+               choiceValues = unique(data$company_size),
+               inline = TRUE
+             ),
+             fluidRow(column(
+               12,
+               leaflet::leafletOutput(outputId = 'map', height = "600px"))
+             )
+             
+           )),
   
   tabPanel('Top 10 highest paid jobs',
-
-    selectInput(inputId = 'country',
-              label = 'Select the country',
-              choices = unique(data$country),
-              selected = 'Canada'),
-    
-    # show the plots
-    mainPanel(
+           
+           selectInput(inputId = 'country',
+                       label = 'Select the country',
+                       choices = unique(data$country),
+                       selected = 'Canada'),
+           
+           # show the plots
+           mainPanel(
              fluidRow(plotlyOutput(outputId = "TopTenPlot",
                                    height = "600px",
                                    width = "600px",
                                    inline = FALSE,
                                    reportTheme = TRUE)
-      ))),
+             ))),
   
   tabPanel('Average salary by employment type and by year',
            fluidRow(
-    splitLayout(
-      cellWidths = 800,
-        #c("40%", "20%"),
-           sidebarPanel(
-             column(
-               width = 12,
-              checkboxGroupInput("exp_levels", "Select experience levels:", 
-                                  choices = c("Entry-level / Junior" = "EN", 
-                                              "Mid-level / Intermediate" = "MI", 
-                                              "Senior-level / Expert" = "SE", 
-                                          "Executive-level / Director" = "EX"),
-                                       selected = c("EN", "MI", "SE", "EX")))),
-              
-              selectInput(inputId = 'remote_ratio',
-                          label="The overall amount of work done remotely:", 
-                          choices = unique(data$remote_ratio), 
-                          selected = '100'),
-      h6(" ")
+             splitLayout(
+               cellWidths = 800,
+               #c("40%", "20%"),
+               sidebarPanel(
+                 column(
+                   width = 12,
+                   checkboxGroupInput("exp_levels", "Select experience levels:", 
+                                      choices = c("Entry-level / Junior" = "EN", 
+                                                  "Mid-level / Intermediate" = "MI", 
+                                                  "Senior-level / Expert" = "SE", 
+                                                  "Executive-level / Director" = "EX"),
+                                      selected = c("EN", "MI", "SE", "EX")))),
+               
+               selectInput(inputId = 'remote_ratio',
+                           label="The overall amount of work done remotely:", 
+                           choices = unique(data$remote_ratio), 
+                           selected = '100'),
+               h6(" ")
              ),
-           
-    # show the plots
-    mainPanel(
-      fluidRow(
-        splitLayout(cellWidths = c("50%", "50%"),
-                    plotOutput(outputId = "salary_plot",
-                               width = "600px"),
-                      plotOutput(outputId = "boxplot",
-                                      width = "500px"),
-                    )
-             ))))
+             
+             # show the plots
+             mainPanel(
+               fluidRow(
+                 splitLayout(cellWidths = c("50%", "50%"),
+                             plotOutput(outputId = "salary_plot",
+                                        width = "600px"),
+                             plotOutput(outputId = "boxplot",
+                                        width = "500px"),
+                 )
+               ))))
   
 )
 # Define server logic required to draw a reactive boxplot
@@ -126,13 +126,26 @@ server <- function(input, output, session) {
       dplyr::summarise(
         number_of_jobs = dplyr::n(),
         median_salary = round(median(salary_in_usd), 0),
+        tooltip_salary = format(round(median(salary_in_usd), 0), big.mark = ',', scientific = FALSE),
         unique_jobs = dplyr::n_distinct(job_title)
       )
     
   })
   
- # MAP output 
-  output$map <- leaflet::renderLeaflet({
+  output$map <- renderLeaflet({
+    
+    
+    # create static map object
+    leaflet::leaflet() |>
+      leaflet::addProviderTiles(providers$CartoDB.Positron) |>
+      leaflet::setView(lng=1,
+                       lat=1,
+                       zoom=2)
+    
+  })
+  
+  # incremental map change in observer
+  observe({
     
     # obtain sf file for map polygons
     country_data <-
@@ -153,8 +166,8 @@ server <- function(input, output, session) {
       "Country: ",
       comp_size_country$admin,
       "<br/>",
-      "Median Salary (USD): $ ",
-      comp_size_country$median_salary,
+      "Median Salary (USD):$",
+      comp_size_country$tooltip_salary,
       "<br/>",
       "Number of Jobs: ",
       comp_size_country$number_of_jobs,
@@ -170,9 +183,10 @@ server <- function(input, output, session) {
                         domain = comp_size_country$median_salary)
     
     # create leaflet map
-    leaflet::leaflet() |>
+    leaflet::leafletProxy("map") |>
+      clearShapes() |>
       leaflet::addProviderTiles(providers$CartoDB.Positron) |>
-      addPolygons(
+      leaflet::addPolygons(
         data = comp_size_country,
         color = ~ pal(median_salary),
         weight = 1,
@@ -185,7 +199,8 @@ server <- function(input, output, session) {
           direction = "auto"
         )
       ) |>
-      addLegend(
+      leaflet::clearControls() |>
+      leaflet::addLegend(
         pal = pal,
         values = comp_size_country$median_salary,
         opacity = 0.7,
@@ -194,7 +209,7 @@ server <- function(input, output, session) {
       )
     
   })
-
+  
   # ----------------Top Jobs------------------------------
   # top jobs data
   TopJobs <- reactive({
@@ -267,8 +282,8 @@ server <- function(input, output, session) {
     if (length(input$exp_levels) == 0){
       data_salaries
     } else{
-    data_salaries  |> 
-      dplyr::filter(experience_level %in% input$exp_levels)
+      data_salaries  |> 
+        dplyr::filter(experience_level %in% input$exp_levels)
     }
   })
   
@@ -289,22 +304,29 @@ server <- function(input, output, session) {
         ggplot2::geom_line(stat = "summary", fun = "mean", color = 'green') +
         ggplot2::xlab("Work Year") +
         ggplot2::ylab("Average Salary in '000 USD") +
-        ggplot2::ggtitle("Average Salary per Year by All Experience Levels")
+        ggplot2::ggtitle("Average Salary per Year by All Experience Levels") +
+        ggplot2::theme(plot.title = element_text(size = 15, face = "bold"),
+                       axis.text.x = element_text(size = 12, angle = 0),
+                       axis.text.y = element_text(size = 12, angle = 0),
+                       axis.title = element_text(size = 15))  
       
     } else {
-    ggplot2::ggplot(data_salaries_filtered, aes(x = work_year, 
-                                                y = salary_in_usd/1000, 
-                                                color = experience_level)) +
-      ggplot2::geom_line(stat = "summary", fun = "mean") +
-      ggplot2::xlab("Work Year") +
-      ggplot2::ylab("Average Salary in '000 USD") +
-      ggplot2::ggtitle("Average Salary per Year by Experience Level") +
-      ggplot2::scale_color_manual(values = c("Entry-level / Junior" = "blue",
-                                    "Mid-level / Intermediate" = "green",
-                                    "Senior-level / Expert" = "orange", 
-                                    "Executive-level / Director" = "red"),
-                         name = "Experience Level"
-      )
+      ggplot2::ggplot(data_salaries_filtered, aes(x = work_year, 
+                                                  y = salary_in_usd/1000, 
+                                                  color = experience_level)) +
+        ggplot2::geom_line(stat = "summary", fun = "mean") +
+        ggplot2::xlab("Work Year") +
+        ggplot2::ylab("Average Salary in '000 USD") +
+        ggplot2::ggtitle("Average Salary per Year by Experience Level") +
+        ggplot2::scale_color_manual(values = c("Entry-level / Junior" = "blue",
+                                               "Mid-level / Intermediate" = "green",
+                                               "Senior-level / Expert" = "orange", 
+                                               "Executive-level / Director" = "red"),
+                                    name = "Experience Level"
+        )+ggplot2::theme( plot.title = element_text(size = 15, face = "bold"),
+                          axis.text.x = element_text(size = 12, angle = 0),
+                          axis.text.y = element_text(size = 12, angle = 0),
+                          axis.title = element_text(size = 15))  
     }
   })
   
