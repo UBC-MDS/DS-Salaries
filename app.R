@@ -265,8 +265,12 @@ server <- function(input, output, session) {
   # Filter the data based on the user's selection
   data_salaries <- read.csv("data/merged_salaries.csv")
   filtered_data_salaries <- reactive({
+    if (length(input$exp_levels) == 0){
+      data_salaries
+    } else{
     data_salaries  |> 
       dplyr::filter(experience_level %in% input$exp_levels)
+    }
   })
   
   # Create a plot of average salary per year by experience level
