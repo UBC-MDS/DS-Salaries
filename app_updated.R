@@ -1,4 +1,4 @@
-# DS-Salaries Shiny Dashboard
+# DS-Salaries Shiny App
 
 # load library
 
