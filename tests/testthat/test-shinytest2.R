@@ -46,3 +46,5 @@ test_that("{shinytest2} recording: salary_test", {
   app$set_inputs(remote_ratio = "100")
   app$expect_values()
 })
+
+

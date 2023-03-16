@@ -25,7 +25,7 @@
   },
   "output": {
     "TopTenPlot": {
-      "src": "[image data hash: 12ba9d46aa4f97f13dd45cd644c6401b]",
+      "src": "[image data hash: fe758af92f8934c1cf13075752216ed6]",
       "width": 800,
       "height": 600,
       "alt": "Plot object",
@@ -62,7 +62,7 @@
             },
             "range": {
               "left": 167.010059931507,
-              "right": 794.520547945205,
+              "right": 700.952662671233,
               "bottom": 560.849315068493,
               "top": 24.958904109589
             }
