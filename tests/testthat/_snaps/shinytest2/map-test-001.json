@@ -1,0 +1,106 @@
+{
+  "input": {
+    "comp_size": "L",
+    "country": "Canada",
+    "country2": "Canada",
+    "exp_levels": [
+      "EN",
+      "MI",
+      "SE",
+      "EX"
+    ],
+    "map_bounds": {
+      "north": 72.2890672001767,
+      "east": 277.03125,
+      "south": -71.6359928833061,
+      "west": -275.2734375
+    },
+    "map_center": {
+      "lng": 1,
+      "lat": 1
+    },
+    "map_zoom": 2,
+    "navbar": "Salary map",
+    "remote_ratio": "100"
+  },
+  "output": {
+    "map": {
+      "x": {
+        "options": {
+          "crs": {
+            "crsClass": "L.CRS.EPSG3857",
+            "code": null,
+            "proj4def": null,
+            "projectedBounds": null,
+            "options": {
+
+            }
+          }
+        },
+        "calls": [
+          {
+            "method": "addProviderTiles",
+            "args": [
+              "CartoDB.Positron",
+              null,
+              null,
+              {
+                "errorTileUrl": "",
+                "noWrap": false,
+                "detectRetina": false
+              }
+            ]
+          }
+        ],
+        "setView": [
+          [
+            1,
+            1
+          ],
+          2,
+          [
+
+          ]
+        ]
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+        {
+          "name": "leaflet-providers",
+          "version": "1.9.0",
+          "src": {
+            "href": "leaflet-providers-1.9.0"
+          },
+          "meta": null,
+          "script": "leaflet-providers_1.9.0.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": false
+        },
+        {
+          "name": "leaflet-providers-plugin",
+          "version": "2.1.1",
+          "src": {
+            "href": "leaflet-providers-plugin-2.1.1"
+          },
+          "meta": null,
+          "script": "leaflet-providers-plugin.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    }
+  },
+  "export": {
+
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "input": {
+    "comp_size": "L",
+    "country": "Canada",
+    "country2": "Canada",
+    "exp_levels": [
+      "EN",
+      "MI",
+      "SE",
+      "EX"
+    ],
+    "map_bounds": {
+      "north": 72.2890672001767,
+      "east": 277.03125,
+      "south": -71.6359928833061,
+      "west": -275.2734375
+    },
+    "map_center": {
+      "lng": 1,
+      "lat": 1
+    },
+    "map_zoom": 2,
+    "navbar": "Average salary by employment type and by year",
+    "remote_ratio": "100"
+  },
+  "output": {
+    "TopTenPlot": {
+      "src": "[image data hash: e52afd7fa1c9c81bc1d13054da50da4a]",
+      "width": 800,
+      "height": 600,
+      "alt": "Plot object",
+      "coordmap": {
+        "panels": [
+          {
+            "panel": 1,
+            "row": 1,
+            "col": 1,
+            "panel_vars": {
+
+            },
+            "log": {
+              "x": null,
+              "y": null
+            },
+            "domain": {
+              "left": 54580.5,
+              "right": 257629.5,
+              "bottom": 0.4,
+              "top": 10.6,
+              "discrete_limits": {
+                "y": [
+                  "AI Scientist",
+                  "Big Data Engineer",
+                  "Data Architect",
+                  "Data Engineer",
+                  "Data Science Engineer",
+                  "Director of Data Science",
+                  "Machine Learning Engineer",
+                  "Machine Learning Scientist",
+                  "Machine Learning Software Engineer",
+                  "Research Scientist"
+                ]
+              }
+            },
+            "mapping": {
+              "x": "salary_in_usd",
+              "y": "job_title",
+              "colour": "country"
+            },
+            "range": {
+              "left": 224.572559931507,
+              "right": 719.030787671233,
+              "bottom": 560.849315068493,
+              "top": 24.958904109589
+            }
+          }
+        ],
+        "dims": {
+          "width": 800,
+          "height": 600
+        }
+      }
+    },
+    "boxplot": {
+      "src": "[image data hash: b2fe5704c5f33da797568aaccc87a575]",
+      "width": 500,
+      "height": 400,
+      "alt": "Plot object",
+      "coordmap": {
+        "panels": [
+          {
+            "panel": 1,
+            "row": 1,
+            "col": 1,
+            "panel_vars": {
+
+            },
+            "log": {
+              "x": null,
+              "y": null
+            },
+            "domain": {
+              "left": 0.4,
+              "right": 4.6,
+              "bottom": -15550,
+              "top": 436550,
+              "discrete_limits": {
+                "x": [
+                  "Part-time",
+                  "Freelance",
+                  "Full-time",
+                  "Contract"
+                ]
+              }
+            },
+            "mapping": {
+              "x": "reorder(employment_type, salary_in_usd)",
+              "y": "salary_in_usd",
+              "colour": "employment_type"
+            },
+            "range": {
+              "left": 61.8381849315069,
+              "right": 494.520547945205,
+              "bottom": 360.849315068493,
+              "top": 24.958904109589
+            }
+          }
+        ],
+        "dims": {
+          "width": 500,
+          "height": 400
+        }
+      }
+    },
+    "map": {
+      "x": {
+        "options": {
+          "crs": {
+            "crsClass": "L.CRS.EPSG3857",
+            "code": null,
+            "proj4def": null,
+            "projectedBounds": null,
+            "options": {
+
+            }
+          }
+        },
+        "calls": [
+          {
+            "method": "addProviderTiles",
+            "args": [
+              "CartoDB.Positron",
+              null,
+              null,
+              {
+                "errorTileUrl": "",
+                "noWrap": false,
+                "detectRetina": false
+              }
+            ]
+          }
+        ],
+        "setView": [
+          [
+            1,
+            1
+          ],
+          2,
+          [
+
+          ]
+        ]
+      },
+      "evals": [
+
+      ],
+      "jsHooks": [
+
+      ],
+      "deps": [
+        {
+          "name": "leaflet-providers",
+          "version": "1.9.0",
+          "src": {
+            "href": "leaflet-providers-1.9.0"
+          },
+          "meta": null,
+          "script": "leaflet-providers_1.9.0.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "package": null,
+          "all_files": false
+        },
+        {
+          "name": "leaflet-providers-plugin",
+          "version": "2.1.1",
+          "src": {
+            "href": "leaflet-providers-plugin-2.1.1"
+          },
+          "meta": null,
+          "script": "leaflet-providers-plugin.js",
+          "stylesheet": null,
+          "head": null,
+          "attachment": null,
+          "all_files": true
+        }
+      ]
+    },
+    "salary_plot": {
+      "src": "[image data hash: c6d1003879638713bd5d1af8b38cff88]",
+      "width": 600,
+      "height": 400,
+      "alt": "Plot object",
+      "coordmap": {
+        "panels": [
+          {
+            "panel": 1,
+            "row": 1,
+            "col": 1,
+            "panel_vars": {
+
+            },
+            "log": {
+              "x": null,
+              "y": null
+            },
+            "domain": {
+              "left": 2019.85,
+              "right": 2023.15,
+              "bottom": 47.0309309090909,
+              "top": 220.266050909091
+            },
+            "mapping": {
+              "x": "work_year",
+              "y": "salary_in_usd/1000",
+              "colour": "experience_level"
+            },
+            "range": {
+              "left": 47.1663099315069,
+              "right": 452.577662671233,
+              "bottom": 360.849315068493,
+              "top": 24.958904109589
+            }
+          }
+        ],
+        "dims": {
+          "width": 600,
+          "height": 400
+        }
+      }
+    }
+  },
+  "export": {
+
+  }
+}
