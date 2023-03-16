@@ -152,6 +152,7 @@ server <- function(input, output, session) {
     country_data <-
       ne_countries(scale = "medium", returnclass = "sf")
     
+    
     # merge filtered df and country info (need to preserve order)
     comp_size_country <-
       merge(
@@ -244,7 +245,7 @@ server <- function(input, output, session) {
                                   input$country),
                     x = 'Salary In USD',
                     y = '') + 
-      ggplot2::theme(legend.position = "none",
+      ggplot2::theme(
                      plot.title = element_text(size = 15, face = "bold"),
                      axis.text.x = element_text(size = 12, angle = 0),
                      axis.text.y = element_text(size = 12, angle = 0),
