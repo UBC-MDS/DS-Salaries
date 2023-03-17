@@ -21,7 +21,14 @@ Commit/s: https://github.com/UBC-MDS/DS-Salaries/commit/c9eee2100e4c664186ae9f6b
 
 3. Yaou Hu
 
-4. Jonah Hamilton
+4. Jonah Hamilton  
+**Modification**: Map improvements:
+Set an appropriate default height. Added base map and observer map object to prevent reloading every time the filter is applied. Properly formatted salary ranges in the tool tips. Increased space between radio buttons  
+**Source:** Peer review milestone 3 
+[frontend review](https://github.ubc.ca/fdandrea/532-peer-review/issues/10#issuecomment-23013), [backend review](https://github.ubc.ca/fdandrea/532-peer-review/issues/10#issuecomment-23050)  
+**Team member:** Jonah  
+**Commit:** [commit](https://github.com/UBC-MDS/DS-Salaries/commit/d67aa8184306de895fb7955cffbd3dd88840e16c)
+
  
 
 
