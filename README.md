@@ -1,7 +1,5 @@
 # DS-Salaries
-[![Test app w/ {renv}](https://github.com/UBC-MDS/DS-Salaries/actions/workflows/testing.yaml/badge.svg?branch=main)](https://github.com/UBC-MDS/DS-Salaries/actions/workflows/testing.yaml)
-
-[![shiny-deploy](https://github.com/UBC-MDS/DS-Salaries/actions/workflows/deploy-app.yaml/badge.svg)](https://github.com/UBC-MDS/DS-Salaries/actions/workflows/deploy-app.yaml)
+[![Test app w/ {renv}](https://github.com/UBC-MDS/DS-Salaries/actions/workflows/testing.yaml/badge.svg?branch=main)](https://github.com/UBC-MDS/DS-Salaries/actions/workflows/testing.yaml) [![shiny-deploy](https://github.com/UBC-MDS/DS-Salaries/actions/workflows/deploy-app.yaml/badge.svg)](https://github.com/UBC-MDS/DS-Salaries/actions/workflows/deploy-app.yaml)
 
 -   authors: Mehwish Nabi, Yaou Hu, Jonah Hamilton, Ruslan Dimitrov
 
