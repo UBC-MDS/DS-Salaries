@@ -1,0 +1,51 @@
+# Reflection Document for DS-Salaries Shiny App Project
+
+Milestone 4
+
+-   authors: Mehwish Nabi, Yaou Hu, Jonah Hamilton, Ruslan Dimitrov
+
+## Completed Implementations
+
+Working toward the completion of Milestone 4, our further developed the dash board incorporating all the meaningful feedback we received from the Instructors and TA team along with the peer reviews.
+
+Specifically each team member implemented changes as follows:
+
+1. Ruslan Dimitrov
+Modification: Added default view of the Salary per Year plot to display "Average Salary per Year by All Experience Levels" when none of the options is selected in the checkboxGroupInput element of the Salary by Year plot
+Source: Peer review milestone 3: When no selection is made, add a 'please make selection' instruction to avoid empty page
+(https://github.ubc.ca/fdandrea/532-peer-review/issues/10#issuecomment-23050)
+Team member: Ruslan Dimitrov
+Commit/s: https://github.com/UBC-MDS/DS-Salaries/commit/c9eee2100e4c664186ae9f6b9528757382858051
+
+2. Mehwish Nabi
+
+3. Yaou Hu
+
+4. Jonah Hamilton
+ 
+
+
+Furthermore we made multiple changes to make the app complete and professional grade:
+- Fix Salary by year plot to better reflect experience level average salaries
+- Add description, keywords, link to shinyapps.io to repo for better review
+- Implemented tests on the app to make it more error proof
+- Incorporate CI and CD workflows and add respective badges to readme
+
+
+
+
+## Changes made to original proposal
+
+1.  **Plots consolidated into three tabs instead of four**
+
+**Rationale**: We realized that having all plots in separate tabs could be optimized for better user experience, that is why we combined two of the plots into a joint tab, achieving optimum levels of readability and cognitive load.
+
+## Usability
+
+We believe that as a result of the above improvements the app has become significantly more usable and professional looking.  
+
+## Feedback themes
+
+Feedback received was extremely helpful.  There weren't recurring themes, however, users who tested the app gave us valuable third party perspective on functionality and corner cases which the team had not implemented in the original Milestone 2 version of the app.
+
+Feedback and guidance received from the course Instructor and TA team was critical for the achievement of the Milestone 4 goals including setting up and implementing Continuous Integration and Continous Deployment processes.
