@@ -63,11 +63,12 @@ git clone https://github.com/UBC-MDS/DS-Salaries.git
 install.packages(c('shiny', 'tidyverse', 'ggplot2', 'thematic', 'plotly', 'dplyr', 'leaflet', 'bslib', 'rnaturalearthdata', 'rnaturalearth', 'sf', 'htmltools'))
 ```
 
-3. Finally, move to the directory and run the following command to run the app locally:
+3. Finally, navigate to the top/root directory of the repository and run the following command in terminal::
 
 ```{r}
 RScript app.R
 ```
+4. Please copy the http address and paste it in your browser and run the dashboard.
 
 ## Get Involved
 
