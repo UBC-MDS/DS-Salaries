@@ -270,9 +270,9 @@ server <- function(input, output, session) {
         labels = scales::label_dollar(scale = .001, 
                                       suffix = "K")) + 
       ggplot2::labs(
-        title = paste('Salary by employment type when remote ratio is',
+        title = paste('Salary by Employment Type When Remote Ratio is',
                       input$remote_ratio),
-        x = 'Employment type',
+        x = 'Employment Type',
         y = 'Salary In USD') +
       #ggplot2::theme_bw() +
       ggplot2::theme(legend.position = "none",
