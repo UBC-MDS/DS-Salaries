@@ -18,7 +18,7 @@
 
 The Shiny app has been deployed on shinyapps.io. It can be accessed [here](https://yhuuu.shinyapps.io/DS-Salaries/).
 
-![](img/demo.mp4)
+![](img/demo.gif)
 
 ## Motivation and research questions
 
