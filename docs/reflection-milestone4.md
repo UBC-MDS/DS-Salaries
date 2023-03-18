@@ -18,7 +18,11 @@ Specifically each team member implemented changes as follows:
 **Commit/s:** https://github.com/UBC-MDS/DS-Salaries/commit/c9eee2100e4c664186ae9f6b9528757382858051   
 
 2. Mehwish Nabi
-
+**Modification**: Added a reactive element in the Top Ten Highest paid jobs to compare the salaries between 2 different countries. Made some modifications in UI to make the layout consistent.   
+**Source:** Peer review milestone 3     
+[backend/layout review point 11](https://github.ubc.ca/fdandrea/532-peer-review/issues/10#issuecomment-23013)    
+**Team member:** Mehwish Nabi     
+**Commit:** [Commit](https://github.com/UBC-MDS/DS-Salaries/commit/f8e67778e94377908a57923223f5b747e952d24c) 
 3. Yaou Hu  
 **Modification**: Combined the boxplot of 'average salary per year' and 'salary by employment type' plot into the same tab and placed side-by-side. Also, made these two plots share the same theme to make the layout consistent.     
 **Source:** Peer review milestone 3     
