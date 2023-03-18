@@ -83,24 +83,20 @@ ui <- navbarPage(
   
   tabPanel('Average salary by employment type and by year',
            fluidRow(
-             splitLayout(
-               cellWidths = 800,
-               #c("40%", "20%"),
-               sidebarPanel(
                  column(
-                   width = 12,
+                   width = 5,
                    checkboxGroupInput("exp_levels", "Select experience levels:", 
                                       choices = c("Entry-level / Junior" = "EN", 
                                                   "Mid-level / Intermediate" = "MI", 
                                                   "Senior-level / Expert" = "SE", 
                                                   "Executive-level / Director" = "EX"),
-                                      selected = c("EN", "MI", "SE", "EX")))),
-               
+                                      selected = c("EN", "MI", "SE", "EX"))),
+               column(
+                 width = 5,
                selectInput(inputId = 'remote_ratio',
                            label="The overall amount of work done remotely:", 
                            choices = unique(data$remote_ratio), 
                            selected = '100'),
-               h6(" ")
              ),
              
              # show the plots
@@ -113,8 +109,7 @@ ui <- navbarPage(
                                         width = "500px"),
                  )
                ))))
-  
-)
+  )
 # Define server logic required to draw a reactive boxplot
 server <- function(input, output, session) {
   
@@ -270,9 +265,9 @@ server <- function(input, output, session) {
         labels = scales::label_dollar(scale = .001, 
                                       suffix = "K")) + 
       ggplot2::labs(
-        title = paste('Salary by employment type when remote ratio is',
+        title = paste('Salary by Employment Type When Remote Ratio is',
                       input$remote_ratio),
-        x = 'Employment type',
+        x = 'Employment Type',
         y = 'Salary In USD') +
       #ggplot2::theme_bw() +
       ggplot2::theme(legend.position = "none",

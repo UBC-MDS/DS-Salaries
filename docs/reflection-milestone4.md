@@ -10,16 +10,21 @@ Working toward the completion of Milestone 4, our further developed the dash boa
 
 Specifically each team member implemented changes as follows:
 
-1. Ruslan Dimitrov
-Modification: Added default view of the Salary per Year plot to display "Average Salary per Year by All Experience Levels" when none of the options is selected in the checkboxGroupInput element of the Salary by Year plot
-Source: Peer review milestone 3: When no selection is made, add a 'please make selection' instruction to avoid empty page
-(https://github.ubc.ca/fdandrea/532-peer-review/issues/10#issuecomment-23050)
-Team member: Ruslan Dimitrov
-Commit/s: https://github.com/UBC-MDS/DS-Salaries/commit/c9eee2100e4c664186ae9f6b9528757382858051
+1. Ruslan Dimitrov   
+**Modification**: Added default view of the Salary per Year plot to display "Average Salary per Year by All Experience Levels" when none of the options is selected in the checkboxGroupInput element of the Salary by Year plot       
+**Source:** Peer review milestone 3: When no selection is made, add a 'please make selection' instruction to avoid empty page   
+(https://github.ubc.ca/fdandrea/532-peer-review/issues/10#issuecomment-23050)    
+**Team member**: Ruslan Dimitrov       
+**Commit/s:** https://github.com/UBC-MDS/DS-Salaries/commit/c9eee2100e4c664186ae9f6b9528757382858051   
 
 2. Mehwish Nabi
 
-3. Yaou Hu
+3. Yaou Hu  
+**Modification**: Combined the boxplot of 'average salary per year' and 'salary by employment type' plot into the same tab and placed side-by-side. Also, made these two plots share the same theme to make the layout consistent.     
+**Source:** Peer review milestone 3     
+[frontend/layout review point 7](https://github.ubc.ca/fdandrea/532-peer-review/issues/10#issuecomment-23013)    
+**Team member:** Yaou Hu      
+**Commit:** https://github.com/UBC-MDS/DS-Salaries/commit/2610f0b877641195620adcdd047a47ccd4313296   
 
 4. Jonah Hamilton  
 **Modification**: Map improvements:
